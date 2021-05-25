@@ -2,6 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Topbar() {
+  // handleLogout(()=> {
+
+  //     // history.push(`/`);
+  //   })
+
+  let token = window.localStorage.getItem("app_token");
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -32,26 +38,32 @@ function Topbar() {
                   Event
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/bookings">
-                  Bookings
-                </Link>
-              </li>
 
-              <div className="d-flex justify-content-end">
+              {!token && (
+                <div className="d-flex justify-content-end">
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/register">
+                      Register/Login
+                    </Link>
+                  </li>
+                </div>
+              )}
+              {token && (
                 <li className="nav-item">
-                  <Link className="nav-link" to="/register">
-                    Register/Login
+                  <Link className="nav-link" to="/bookings">
+                    Bookings
                   </Link>
                 </li>
-              </div>
-              <div className="d-flex justify-content-end">
-                <li className="nav-item">
-                  <Link className="nav-link" to="/login">
-                    Login
-                  </Link>
-                </li>
-              </div>
+              )}
+              {token && (
+                <div className="d-flex justify-content-end">
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/" type="button">
+                      Logout
+                    </Link>
+                  </li>
+                </div>
+              )}
             </ul>
           </div>
         </div>

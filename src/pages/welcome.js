@@ -8,7 +8,7 @@ export default function Welcome() {
     <>
      
         <div className="container">
-          Welcome to the new bookng app
+          <h1>Create and Booking events<span>(poetry,gallery,theatre,aything)</span> </h1>
         </div>
     
     </>

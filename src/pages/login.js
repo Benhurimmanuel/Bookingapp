@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
+import loginContext from "../context/login-context";
+
+// static contextType = loginContext;
 
 export default function Login() {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const loginData = { userEmail, userPassword };
+
   let history = useHistory();
   function handleSuubmit(e) {
     e.preventDefault();
@@ -34,18 +38,12 @@ export default function Login() {
         return res.json();
       })
       .then((resData) => {
-        // console.log(resData.data.login.token);
-        let token = resData.data.login.token;
-        let userid = resData.data.login.userId;
-        window.localStorage.setItem("app_token", token);
-        window.localStorage.setItem("userId", userid);
+        console.log(resData.data.login);
+        if (resData.data.login.token) {
+          window.localStorage.setItem("app_token", resData.data.login.token);
+          window.localStorage.setItem("userId", resData.data.login.userId);
 
-        // console.log(login.data.id);
-        if (token) {
-          history.push(`/events/`, token);
-        } else {
-          alert("Email or Password is incorrect");
-          history.push("/login");
+          history.push(`/events`);
         }
       })
       .catch((err) => {

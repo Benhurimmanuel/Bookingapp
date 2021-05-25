@@ -93,10 +93,9 @@ export default function Register() {
         <div className="mb-3">
           <h6 className="offset-1 offset-sm-3 offset-md-4 offset-lg-4 mt-5">
             Already Signed up!{" "}
-            <Link to="/login" exact>
-              click here
+            <Link to="/login" exact="true">
+              <button class="btn btn-danger m-2">Login here</button>
             </Link>{" "}
-            to login
           </h6>
         </div>
       </form>

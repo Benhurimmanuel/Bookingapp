@@ -131,5 +131,5 @@ export default function CreateEvent() {
       </>
     );
   }
-  return <>{history.push("/")}</>;
+  return <>{history.push("/login")}</>;
 }
