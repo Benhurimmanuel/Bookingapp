@@ -6,8 +6,11 @@ export default function Welcome() {
   useEffect(() => {
     bookingsfetch();
   }, []);
+
   let [bookingsList, setBookingsList] = useState([{}]);
   let [loading, setLoading] = useState(false);
+  const token = window.localStorage.getItem("app_token");
+
   const bookingsfetch = () => {
     setLoading(true);
     const requestBody = {
@@ -29,6 +32,7 @@ export default function Welcome() {
       body: JSON.stringify(requestBody),
       headers: {
         "Content-Type": "application/json",
+        Authorization: token,
       },
     })
       .then((res) => {
@@ -52,7 +56,20 @@ export default function Welcome() {
   return (
     <>
       <div className="container">bookings page</div>
-      <BookingsList bookings={bookingsList}></BookingsList>
+      <table class="table">
+        <thead>
+          <tr>
+            {/* <th scope="col">#</th> */}
+            <th scope="col">Event</th>
+            <th scope="col">Event Date</th>
+            <th scope="col">Date of Booking</th>
+            <th scope="col">Booking status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <BookingsList bookings={bookingsList}></BookingsList>
+        </tbody>
+      </table>
     </>
   );
 }

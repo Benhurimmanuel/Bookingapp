@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 
 export default function ViewEventModal(props) {
-  console.log(props);
+  // console.log(props);
 
   const token = window.localStorage.getItem("app_token");
   function handleBooking() {
@@ -48,7 +48,7 @@ export default function ViewEventModal(props) {
       body: JSON.stringify(requestBody),
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
+        Authorization: token,
       },
     })
       .then((res) => {
@@ -67,6 +67,7 @@ export default function ViewEventModal(props) {
   }
   return (
     <>
+      {/* {console.log(props.value._id)} */}
       <div
         class="modal fade"
         id="eventModal"
@@ -98,13 +99,15 @@ export default function ViewEventModal(props) {
               <p class="eventdes">{props.value.description}</p>
             </div>
             <div class="modal-footer">
-              {!token?null:(<button
-                type="submit"
-                class="btn btn-primary"
-                onClick={handleBooking}
-              >
-                Book Event
-              </button>)}
+              {!token ? null : (
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  onClick={handleBooking}
+                >
+                  Book Event
+                </button>
+              )}
             </div>
           </div>
         </div>

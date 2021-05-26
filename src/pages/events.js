@@ -94,7 +94,9 @@ export default function Events() {
       {loading ? (
         <h2>Loading...</h2>
       ) : (
-        <EventList eventslist={eventsList}></EventList>
+        <div class="row">
+          <EventList eventslist={eventsList}></EventList>
+        </div>
       )}
     </>
   );

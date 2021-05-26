@@ -37,10 +37,7 @@ export default function Modal(props) {
           price:${eventPrice},
           date: "${eventDate}"}) 
      {_id
-      title
-      description
-      date
-      price
+     
      }
     }
     `,
@@ -51,7 +48,7 @@ export default function Modal(props) {
       body: JSON.stringify(requestBody),
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
+        Authorization: token,
       },
     })
       .then((res) => {
