@@ -6,8 +6,9 @@ import {
   Route,
   Link,
 } from "react-router-dom";
+import EventList from "../eventsList";
 
-import Modal from "../modal";
+import Modal from "../modal/modal";
 
 export default function Events() {
   useEffect(() => {
@@ -17,8 +18,10 @@ export default function Events() {
   let history = useHistory();
 
   let [eventsList, setEventsList] = useState([{}]);
+  let [loading, setLoading] = useState(false);
 
   const eventsfetch = () => {
+    setLoading(true);
     const requestBody = {
       query: `query {
           events 
@@ -47,11 +50,13 @@ export default function Events() {
       .then((resData) => {
         // console.log(resData.data.events);
         setEventsList(resData.data.events);
-        console.log(resData.data.events);
-        console.log(eventsList);
+        // console.log(resData.data.events);
+        // console.log(eventsList);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
       });
   };
 
@@ -86,25 +91,11 @@ export default function Events() {
       <br />
       <br />
       <br />
-      {eventsList.map((event) => {
-        return (
-          <>
-            <div class="card col-3 mr-2">
-              <div class="card-header">{event.title}</div>
-              <div class="card-body">
-                <div class="d-flex justify-content-between">
-                  <h5 class="card-title">{event.date}</h5>
-                  <h5 class="card-title">Rs.{event.price}</h5>
-                </div>
-                <p class="card-text">{event.description}</p>
-                <a href="#" class="btn btn-primary">
-                  Go somewhere
-                </a>
-              </div>
-            </div>
-          </>
-        );
-      })}
+      {loading ? (
+        <h2>Loading...</h2>
+      ) : (
+        <EventList eventslist={eventsList}></EventList>
+      )}
     </>
   );
 }
