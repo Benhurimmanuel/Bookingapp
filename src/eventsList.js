@@ -8,7 +8,7 @@ export default function EventList(props) {
           <>
             {" "}
             <ViewEventModal value={event}></ViewEventModal>
-            <div class="col-12 card col-md-4 col-lg-3 m-2">
+            <div class="col-12 card col-md-3 m-4">
               <div class="card-header">{event.title}</div>
               <div class="card-body">
                 <div class="d-flex justify-content-between">

@@ -11,13 +11,22 @@ export default function BookingsList(props) {
               <td>{new Date(item.event.date).toLocaleDateString()}</td>
 
               <td>{new Date(item.createdAt).toLocaleDateString()}</td>
-              <td>@mdo</td>
+
+              <td>
+                <button
+                  class="btn btn-danger"
+                  onClick={props.onDelete.bind(this, item._id)}
+                >
+                  Cancel
+                </button>
+              </td>
             </tr>
+            {
+          console.log(item)
+        }
           </>
         );
-        {
-          /* console.log(item); */
-        }
+       
       })}
     </>
   );

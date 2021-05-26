@@ -10,6 +10,7 @@ export default function Welcome() {
   let [bookingsList, setBookingsList] = useState([{}]);
   let [loading, setLoading] = useState(false);
   const token = window.localStorage.getItem("app_token");
+  const user = window.localStorage.getItem("userId");
 
   const bookingsfetch = () => {
     setLoading(true);
@@ -53,6 +54,45 @@ export default function Welcome() {
         setLoading(false);
       });
   };
+  function handleCancel(id) {
+    console.log(id);
+
+    setLoading(true);
+    const requestBody = {
+      query: `mutation {
+        cancelBooking (bookingId:"${id}")
+          {_id
+           title
+         }
+      }
+    `,
+    };
+    fetch("http://localhost:8080/graphql  ", {
+      method: "POST",
+      body: JSON.stringify(requestBody),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+    })
+      .then((res) => {
+        if (res.status !== 200 && res.status !== 201) {
+          throw new Error("Failed!");
+        }
+        return res.json();
+      })
+      .then((resData) => {
+        // console.log(resData.data.events);
+        setBookingsList(resData.data.bookings);
+        // console.log(resData.data.events);
+        // console.log(eventsList);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  }
   return (
     <>
       <div className="container">bookings page</div>
@@ -63,11 +103,14 @@ export default function Welcome() {
             <th scope="col">Event</th>
             <th scope="col">Event Date</th>
             <th scope="col">Date of Booking</th>
-            <th scope="col">Booking status</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          <BookingsList bookings={bookingsList}></BookingsList>
+          <BookingsList
+            bookings={bookingsList}
+            onDelete={handleCancel}
+          ></BookingsList>
         </tbody>
       </table>
     </>
