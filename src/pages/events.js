@@ -34,7 +34,7 @@ export default function Events() {
       }
     `,
     };
-    fetch("http://localhost:8080/graphql  ", {
+    fetch("https://eventbookingappback.herokuapp.com/graphql  ", {
       method: "POST",
       body: JSON.stringify(requestBody),
       headers: {

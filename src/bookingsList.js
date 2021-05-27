@@ -22,7 +22,7 @@ export default function BookingsList(props) {
               </td>
             </tr>
             {
-          console.log(item)
+          console.log(props)
         }
           </>
         );

@@ -13,6 +13,7 @@ export default function Welcome() {
   const user = window.localStorage.getItem("userId");
 
   const bookingsfetch = () => {
+    console.log("in fetch");
     setLoading(true);
     const requestBody = {
       query: `query {
@@ -28,7 +29,7 @@ export default function Welcome() {
       }
     `,
     };
-    fetch("http://localhost:8080/graphql  ", {
+    fetch("https://eventbookingappback.herokuapp.com/graphql  ", {
       method: "POST",
       body: JSON.stringify(requestBody),
       headers: {
@@ -43,12 +44,12 @@ export default function Welcome() {
         return res.json();
       })
       .then((resData) => {
-        // console.log(resData.data.events);
+        console.log(resData.data.bookings);
         setBookingsList(resData.data.bookings);
         // console.log(resData.data.events);
         // console.log(eventsList);
         setLoading(false);
-      })
+      })  
       .catch((err) => {
         console.log(err);
         setLoading(false);
@@ -67,7 +68,7 @@ export default function Welcome() {
       }
     `,
     };
-    fetch("http://localhost:8080/graphql  ", {
+    fetch("https://eventbookingappback.herokuapp.com/graphql  ", {
       method: "POST",
       body: JSON.stringify(requestBody),
       headers: {
@@ -107,10 +108,10 @@ export default function Welcome() {
           </tr>
         </thead>
         <tbody>
-          <BookingsList
+          {/* <BookingsList
             bookings={bookingsList}
             onDelete={handleCancel}
-          ></BookingsList>
+          ></BookingsList> */}
         </tbody>
       </table>
     </>
