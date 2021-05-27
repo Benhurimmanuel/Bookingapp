@@ -108,10 +108,10 @@ export default function Welcome() {
           </tr>
         </thead>
         <tbody>
-          {/* <BookingsList
+         <BookingsList
             bookings={bookingsList}
             onDelete={handleCancel}
-          ></BookingsList> */}
+          ></BookingsList>
         </tbody>
       </table>
     </>
