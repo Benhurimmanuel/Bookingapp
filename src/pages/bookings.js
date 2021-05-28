@@ -44,7 +44,7 @@ export default function Welcome() {
         return res.json();
       })
       .then((resData) => {
-        // console.log(resData.data.bookings);
+        console.log(resData.data.bookings);
         setBookingsList(resData.data.bookings);
         setLoading(false);
       })

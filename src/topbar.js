@@ -66,24 +66,3 @@ function Topbar() {
 }
 
 export default Topbar;
-
-// {
-//   window.localStorage.getItem("app_token") && (
-//     <button
-//       type="button"
-//       className="btn btn-primary"
-//       data-bs-toggle="modal"
-//       data-bs-target="#exampleModal"
-//     >
-//       Create Event
-//     </button>
-//   );
-// }
-// {
-//   /* </div> */
-// }
-// {
-//   window.localStorage.getItem("app_token") && (
-//     <button className="btn btn-danger">Logout</button>
-//   );
-// }
