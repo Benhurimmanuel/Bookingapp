@@ -51,8 +51,15 @@ export default function Events() {
 
   return (
     <>
+      <button
+        className="offset-5 btn btn-danger "
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+        Create New Event
+      </button>
       <div className=" row ">
-        <Modal></Modal>
+        <Modal eventsList={eventsList}></Modal>
 
         {loading ? (
           <h2>Loading...</h2>

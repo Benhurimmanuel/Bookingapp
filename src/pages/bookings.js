@@ -44,7 +44,7 @@ export default function Welcome() {
         return res.json();
       })
       .then((resData) => {
-        console.log(resData.data.bookings);
+        // console.log(resData.data.bookings);
         setBookingsList(resData.data.bookings);
         setLoading(false);
       })
@@ -54,7 +54,7 @@ export default function Welcome() {
       });
   };
   function handleCancel(id) {
-    console.log(id);
+    // console.log(id);
 
     setLoading(true);
     const requestBody = {
@@ -109,13 +109,11 @@ export default function Welcome() {
                 </tr>
               </thead>
               <tbody>
-                <div className="row">
-                  {/* <BookingsList
+                <BookingsList
                   key="id"
-            bookings={bookingsList}
-            onDelete={handleCancel}
-          ></BookingsList> */}
-                </div>
+                  bookings={bookingsList}
+                  onDelete={handleCancel}
+                ></BookingsList>
               </tbody>
             </table>
           </>

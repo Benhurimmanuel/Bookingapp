@@ -5,7 +5,7 @@ export default function ViewEventModal(props) {
   function handleBooking() {
     const requestBody = {
       query: `mutation {
-          bookEvent(eventId:"${props.value._id}")
+          bookEvent(eventId:"${props.eventId}")
        {_id
        
         createdAt
@@ -15,7 +15,7 @@ export default function ViewEventModal(props) {
       `,
     };
 
-    fetch("http://localhost:8080/graphql  ", {
+    fetch("https://eventbookingappback.herokuapp.com/graphql  ", {
       method: "POST",
       body: JSON.stringify(requestBody),
       headers: {
@@ -31,6 +31,7 @@ export default function ViewEventModal(props) {
       })
       .then((resData) => {
         console.log(resData);
+        // setEventsList.push(resData);
       })
       .catch((err) => {
         console.log(err);
@@ -38,42 +39,42 @@ export default function ViewEventModal(props) {
   }
   return (
     <>
-      {console.log(props)}
       <div
-        class="modal fade"
+        className="modal fade"
         id="eventModal"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">
                 {props.title}
               </h5>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
 
-            <div class="modal-body">
-              <div class="d-flex justify-content-between">
+            <div key={props.id} className="modal-body">
+              <div className="d-flex justify-content-between">
                 <h6>
                   Date Of Event: {new Date(props.date).toLocaleDateString()}
                 </h6>
                 <h6>Cost per Person: Rs {props.price}</h6>
               </div>
-              <p class="eventdes">{props.description}</p>
+              <p className="eventdes">{props.description}</p>
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               {!token ? null : (
                 <button
                   type="submit"
-                  class="btn btn-outline-danger"
+                  className="btn btn-outline-danger"
+                  data-bs-dismiss="modal"
                   onClick={handleBooking}
                 >
                   Book Event

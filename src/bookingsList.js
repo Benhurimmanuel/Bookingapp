@@ -2,11 +2,12 @@ import React from "react";
 
 export default function BookingsList(props) {
   return (
-    <>{""}
+    <>
+      {""}
       {props.bookings.map((item) => {
         return (
           <>
-            <tr>
+            <tr key={item._id}>
               <td>{item.event.title}</td>
               <td>{new Date(item.event.date).toLocaleDateString()}</td>
 
@@ -21,12 +22,9 @@ export default function BookingsList(props) {
                 </button>
               </td>
             </tr>
-            {
-          console.log(props)
-        }
+            {console.log(props.bookings[0].event)}
           </>
         );
-       
       })}
     </>
   );

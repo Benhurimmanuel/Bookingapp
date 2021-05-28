@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
-export default function Modal() {
+export default function Modal(props) {
+  const history = useHistory();
   const [eventTitle, setEventTitle] = useState("");
   const [eventDescription, setEventDescription] = useState("");
   let [eventPrice, setEventPrice] = useState();
@@ -10,9 +12,10 @@ export default function Modal() {
 
   const token = window.localStorage.getItem("app_token");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(event);
+
     if (
       eventTitle.trim().length === 0 ||
       eventPrice < 0 ||
@@ -34,7 +37,7 @@ export default function Modal() {
     `,
     };
 
-    fetch("http://localhost:8080/graphql  ", {
+    fetch("https://eventbookingappback.herokuapp.com/graphql  ", {
       method: "POST",
       body: JSON.stringify(requestBody),
       headers: {
@@ -50,6 +53,10 @@ export default function Modal() {
       })
       .then((resData) => {
         console.log(resData);
+        props.eventsList.push(resData);
+      })
+      .then((resData) => {
+        window.location.reload(false);
       })
       .catch((err) => {
         console.log(err);
@@ -143,7 +150,7 @@ export default function Modal() {
                 type="submit"
                 class="btn btn-danger"
                 form="eventform"
-                data-bs-dismiss="modal"
+                // data-bs-dismiss="modal"
               >
                 Submit
               </button>
