@@ -65,13 +65,13 @@ export default function CreateEvent() {
       <>
         <div className="container">
           <form onSubmit={handleSubmit}>
-            <div class="mb-3">
-              <label for=" Title" class="form-label">
+            <div className="mb-3">
+              <label for=" Title" className="form-label">
                 Title
               </label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 id=" title"
                 value={eventTitle}
                 onChange={(e) => {
@@ -80,13 +80,13 @@ export default function CreateEvent() {
               />
             </div>
 
-            <div class="mb-3">
-              <label for="price" class="form-label">
+            <div className="mb-3">
+              <label for="price" className="form-label">
                 Price
               </label>
               <input
                 type="number"
-                class="form-control"
+                className="form-control"
                 id="Price"
                 value={+eventPrice}
                 onChange={(e) => {
@@ -94,26 +94,26 @@ export default function CreateEvent() {
                 }}
               />
             </div>
-            <div class="mb-3">
-              <label for="datetime-local" class="form-label">
+            <div className="mb-3">
+              <label for="datetime-local" className="form-label">
                 Date
               </label>
               <input
                 type="date"
-                class="form-control"
+                className="form-control"
                 id="date"
                 value={eventDate}
                 onChange={(e) => {
                   setEventDate(e.target.value);
                 }}
               />
-              <div class="mb-3">
-                <label for="description" class="form-label">
+              <div className="mb-3">
+                <label for="description" className="form-label">
                   Description
                 </label>
                 <input
                   type="textarea"
-                  class="form-control"
+                  className="form-control"
                   id="Description"
                   value={eventDescription}
                   onChange={(e) => {
@@ -123,7 +123,7 @@ export default function CreateEvent() {
               </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" className="btn btn-primary">
               Submit
             </button>
           </form>

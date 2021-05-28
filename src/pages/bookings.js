@@ -46,10 +46,8 @@ export default function Welcome() {
       .then((resData) => {
         console.log(resData.data.bookings);
         setBookingsList(resData.data.bookings);
-        // console.log(resData.data.events);
-        // console.log(eventsList);
         setLoading(false);
-      })  
+      })
       .catch((err) => {
         console.log(err);
         setLoading(false);
@@ -83,10 +81,7 @@ export default function Welcome() {
         return res.json();
       })
       .then((resData) => {
-        // console.log(resData.data.events);
         setBookingsList(resData.data.bookings);
-        // console.log(resData.data.events);
-        // console.log(eventsList);
         setLoading(false);
       })
       .catch((err) => {
@@ -96,24 +91,36 @@ export default function Welcome() {
   }
   return (
     <>
-      <div className="container">bookings page</div>
-      <table class="table">
-        <thead>
-          <tr>
-            {/* <th scope="col">#</th> */}
-            <th scope="col">Event</th>
-            <th scope="col">Event Date</th>
-            <th scope="col">Date of Booking</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-         <BookingsList
+      {""}
+      <div className="container">
+        {loading ? (
+          <h2>Loading...</h2>
+        ) : (
+          <>
+            {" "}
+            <h2>Your Bookings</h2>
+            <table className="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Event</th>
+                  <th scope="col">Event Date</th>
+                  <th scope="col">Date of Booking</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <div className="row">
+                  {/* <BookingsList
+                  key="id"
             bookings={bookingsList}
             onDelete={handleCancel}
-          ></BookingsList>
-        </tbody>
-      </table>
+          ></BookingsList> */}
+                </div>
+              </tbody>
+            </table>
+          </>
+        )}
+      </div>
     </>
   );
 }

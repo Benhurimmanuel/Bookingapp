@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
-import loginContext from "../context/login-context";
-
-// static contextType = loginContext;
 
 export default function Login() {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
-  const loginData = { userEmail, userPassword };
 
   let history = useHistory();
   function handleSuubmit(e) {
@@ -85,7 +81,7 @@ export default function Login() {
           />
         </div>
         <div className="d-flex justify-content-end mt-4">
-          <button className="col-2 btn btn-warning" type="submit">
+          <button className="col-2 btn btn-outline-danger" type="submit">
             Login
           </button>
         </div>

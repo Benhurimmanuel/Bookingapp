@@ -2,7 +2,7 @@ import React from "react";
 
 export default function BookingsList(props) {
   return (
-    <>
+    <>{""}
       {props.bookings.map((item) => {
         return (
           <>
@@ -14,7 +14,7 @@ export default function BookingsList(props) {
 
               <td>
                 <button
-                  class="btn btn-danger"
+                  className="btn btn-danger"
                   onClick={props.onDelete.bind(this, item._id)}
                 >
                   Cancel

@@ -1,36 +1,8 @@
-import React, { useState } from "react";
-import {
-  useHistory,
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-} from "react-router-dom";
+import React from "react";
 
 export default function ViewEventModal(props) {
-  // console.log(props);
-
   const token = window.localStorage.getItem("app_token");
   function handleBooking() {
-    // let history = useHistory();
-    // const [eventTitle, setEventTitle] = useState("");
-    // const [eventDescription, setEventDescription] = useState("");
-    // let [eventPrice, setEventPrice] = useState();
-    // const [eventDate, setEventDate] = useState("");
-    // eventPrice = parseFloat(eventPrice);
-    // const event = { eventTitle, eventDescription, eventDate, eventPrice };
-
-    // const handleSubmit = (e) => {
-    //   e.preventDefault();
-    //   console.log(event);
-    //   if (
-    //     eventTitle.trim().length === 0 ||
-    //     eventPrice < 0 ||
-    //     eventDescription.trim().length === 0 ||
-    //     eventDate.trim().length === 0
-    //   ) {
-    //     return;
-    //   }
     const requestBody = {
       query: `mutation {
           bookEvent(eventId:"${props.value._id}")
@@ -63,11 +35,10 @@ export default function ViewEventModal(props) {
       .catch((err) => {
         console.log(err);
       });
-    // };  console.log("asdasd");
   }
   return (
     <>
-      {/* {console.log(props.value._id)} */}
+      {console.log(props)}
       <div
         class="modal fade"
         id="eventModal"
@@ -79,7 +50,7 @@ export default function ViewEventModal(props) {
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">
-                {props.value.title}
+                {props.title}
               </h5>
               <button
                 type="button"
@@ -88,21 +59,21 @@ export default function ViewEventModal(props) {
                 aria-label="Close"
               ></button>
             </div>
+
             <div class="modal-body">
               <div class="d-flex justify-content-between">
                 <h6>
-                  Date Of Event:{" "}
-                  {new Date(props.value.date).toLocaleDateString()}
+                  Date Of Event: {new Date(props.date).toLocaleDateString()}
                 </h6>
-                <h6>Cost per Person: Rs {props.value.price}</h6>
+                <h6>Cost per Person: Rs {props.price}</h6>
               </div>
-              <p class="eventdes">{props.value.description}</p>
+              <p class="eventdes">{props.description}</p>
             </div>
             <div class="modal-footer">
               {!token ? null : (
                 <button
                   type="submit"
-                  class="btn btn-primary"
+                  class="btn btn-outline-danger"
                   onClick={handleBooking}
                 >
                   Book Event

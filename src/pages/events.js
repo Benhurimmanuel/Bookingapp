@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  useHistory,
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import EventList from "../eventsList";
 
 import Modal from "../modal/modal";
@@ -14,8 +8,6 @@ export default function Events() {
   useEffect(() => {
     eventsfetch();
   }, []);
-
-  let history = useHistory();
 
   let [eventsList, setEventsList] = useState([{}]);
   let [loading, setLoading] = useState(false);
@@ -48,10 +40,7 @@ export default function Events() {
         return res.json();
       })
       .then((resData) => {
-        // console.log(resData.data.events);
         setEventsList(resData.data.events);
-        // console.log(resData.data.events);
-        // console.log(eventsList);
         setLoading(false);
       })
       .catch((err) => {
@@ -62,42 +51,18 @@ export default function Events() {
 
   return (
     <>
-      {/* <div className="container"> */}
-      <Modal></Modal>
-      {window.localStorage.getItem("app_token") && (
-        <button
-          type="button"
-          class="btn btn-primary"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Create Event
-        </button>
-      )}
-      {/* </div> */}
-      {window.localStorage.getItem("app_token") && (
-        <button
-          className="btn btn-danger"
-          onClick={() => {
-            window.localStorage.removeItem("app_token");
-            window.localStorage.removeItem("userId");
+      <div className=" row ">
+        <Modal></Modal>
 
-            history.push(`/`);
-          }}
-        >
-          Logout
-        </button>
-      )}
-      <br />
-      <br />
-      <br />
-      {loading ? (
-        <h2>Loading...</h2>
-      ) : (
-        <div class="row">
-          <EventList eventslist={eventsList}></EventList>
-        </div>
-      )}
+        {loading ? (
+          <h2>Loading...</h2>
+        ) : (
+          <>
+            <h2>Events</h2>
+            <EventList eventslist={eventsList}></EventList>
+          </>
+        )}
+      </div>
     </>
   );
 }

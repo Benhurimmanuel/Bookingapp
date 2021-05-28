@@ -1,14 +1,6 @@
 import React, { useState } from "react";
-import {
-  useHistory,
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-} from "react-router-dom";
 
-export default function Modal(props) {
-  let history = useHistory();
+export default function Modal() {
   const [eventTitle, setEventTitle] = useState("");
   const [eventDescription, setEventDescription] = useState("");
   let [eventPrice, setEventPrice] = useState();
@@ -37,7 +29,6 @@ export default function Modal(props) {
           price:${eventPrice},
           date: "${eventDate}"}) 
      {_id
-     
      }
     }
     `,
@@ -148,7 +139,12 @@ export default function Modal(props) {
               </form>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary" form="eventform">
+              <button
+                type="submit"
+                class="btn btn-danger"
+                form="eventform"
+                data-bs-dismiss="modal"
+              >
                 Submit
               </button>
             </div>

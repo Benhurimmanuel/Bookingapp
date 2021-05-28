@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { BrowserRouter as Link, useHistory } from "react-router-dom";
-// import { PostUserRegister } from "../api";
 
 export default function Register() {
   let history = useHistory();
   const [userEmail, setUserEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [userPassword, setUserPassword] = useState("");
-  const userData = { userEmail, userName, userPassword };
+
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -85,7 +84,10 @@ export default function Register() {
         </div>
         <div className="mb-3">
           <Link to="/login" exact>
-            <button type="submit" className="form-control btn btn-warning">
+            <button
+              type="submit"
+              className="form-control btn btn-outline-danger"
+            >
               Submit
             </button>
           </Link>
@@ -94,7 +96,7 @@ export default function Register() {
           <h6 className="offset-1 offset-sm-3 offset-md-4 offset-lg-4 mt-5">
             Already Signed up!{" "}
             <Link to="/login" exact="true">
-              <button class="btn btn-danger m-2">Login here</button>
+              <button className="btn btn-outline-danger m-2">Login here</button>
             </Link>{" "}
           </h6>
         </div>
