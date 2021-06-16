@@ -3,15 +3,16 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import BookingsList from "../bookingsList";
 
 export default function Welcome() {
-  useEffect(() => {
-    bookingsfetch();
-  }, []);
-
-  let [bookingsList, setBookingsList] = useState([{}]);
+  let [bookingsList, setBookingsList] = useState([]);
   let [loading, setLoading] = useState(false);
   const token = window.localStorage.getItem("app_token");
   const user = window.localStorage.getItem("userId");
 
+  useEffect(() => {
+    bookingsfetch();
+  }, []);
+
+  console.log(bookingsList);
   const bookingsfetch = () => {
     console.log("in fetch");
     setLoading(true);
@@ -109,11 +110,15 @@ export default function Welcome() {
                 </tr>
               </thead>
               <tbody>
-                <BookingsList
-                  key="id"
-                  bookings={bookingsList}
-                  onDelete={handleCancel}
-                ></BookingsList>
+                {bookingsList.length ? (
+                  <BookingsList
+                    key="id"
+                    bookings={bookingsList}
+                    onDelete={handleCancel}
+                  ></BookingsList>
+                ) : (
+                  <p> data unavailable</p>
+                )}
               </tbody>
             </table>
           </>
